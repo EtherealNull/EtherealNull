@@ -27,7 +27,7 @@ terraform-project/
 
 ```
 
-Step deploy 
+## Step deploy 
 
 ## Initialize Terraform:
 - Initialize the backend and download the required providers and modules.
