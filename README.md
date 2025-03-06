@@ -57,30 +57,28 @@ terraform apply
 terraform destroy
 ```
 
-> [!NOTE]
-> Useful information that users should know, even when skimming content.
-
 # Displaying Terraform Code in Markdown
-
+- add new role provider.tf
 ```hcl
-resource "aws_iam_role" "this" {
-  name = "IAM_CrossAccount_TS_Tags_Role"
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17",
-    Statement = [
-      {
-        Effect    = "Allow",
-        Principal = { AWS = "arn:aws:iam::767828736856:root" },
-        Action    = "sts:AssumeRole",
-        Condition = {
-          StringEquals = {
-            "aws:PrincipalTag/Accesslevel" = "admin",
-            "aws:PrincipalTag/Environment" = "Production",
-            "aws:PrincipalTag/Project"     = "Test",
-            "aws:PrincipalTag/Team"        = "DevOps"
-          }
-        }
-      }
-    ]
-  })
+provider "aws" {
+  alias  = "account_d"
+  region = "ap-southeast-2"
+
+  assume_role {
+    role_arn = "arn:aws:iam::<NEW_ACCOUNT_ID>:role/IAM_CrossAccount_TS_Administrator_Role"
+  }
 }
+```
+- add new role main.tf
+```hcl
+module "iam_role_account_d" {
+  source = "./modules/iam_role"
+  providers = {
+    aws = aws.account_d
+  }
+  add variables  module 
+}
+
+```
+
+
