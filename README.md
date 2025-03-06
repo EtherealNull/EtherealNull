@@ -85,3 +85,42 @@ resource "aws_iam_role" "this" {
   })
 }
 
+
+When you view your README on GitHub, this block will be highlighted as Terraform code.
+
+---
+
+### 2. Running Terraform via GitHub Actions
+
+If you want to automatically run your Terraform commands (like `terraform init` and `terraform plan`) whenever you push changes, you can set up a GitHub Actions workflow. Create a file at `.github/workflows/terraform.yml` in your repository with content similar to the following:
+
+```yaml
+name: Terraform
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: "1.5.0"  # use your desired version
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Plan
+        run: terraform plan
+
+
