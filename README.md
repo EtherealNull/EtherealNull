@@ -60,6 +60,8 @@ terraform destroy
 > [!NOTE]
 > Useful information that users should know, even when skimming content.
 
+# Displaying Terraform Code in Markdown
+
 ```hcl
 resource "aws_iam_role" "this" {
   name = "IAM_CrossAccount_TS_Tags_Role"
