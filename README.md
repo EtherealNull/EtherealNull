@@ -9,7 +9,7 @@ This project uses Terraform to manage AWS infrastructure. Follow the steps below
 
 ## Setup
 
-1. **Clone the Repository:**
+- Clone the Repository:
 
    ```bash
    git clone https://github.com/terraform-project
