@@ -14,3 +14,24 @@ This project uses Terraform to manage AWS infrastructure. Follow the steps below
    ```bash
    git clone https://github.com/your-username/your-repo.git
    cd your-repo
+## Structure
+```
+terraform-project/
+├── main.tf
+├── provider.tf
+├── variables.tf 
+└── modules/
+    └── iam_role/
+        ├── main.tf
+        └── outputs.tf
+
+```
+
+Step deploy 
+
+- [ ] terraform init 
+- [ ] terraform plan 
+- [ ] terraform apply 
+
+> [!NOTE]
+> Useful information that users should know, even when skimming content.
